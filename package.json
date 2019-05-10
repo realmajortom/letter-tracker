@@ -1,0 +1,11 @@
+{
+  "name": "letter-tracker",
+  "version": "1.0.0",
+  "description": "create dictionary with any given text. See what letters remain in dictionary as you form new chunk of text",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Thomas Girgenti",
+  "license": "ISC"
+}
