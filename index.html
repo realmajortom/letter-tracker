@@ -3,30 +3,30 @@
 
   <head>
     <title>Do My Letters Fit?</title>
-    <script src="index.js"></script>
+    <link href="main.css" rel="stylesheet">
   </head>
 
 
   <body>
 
-    <form>
-      <label>Input Text Here: <br>
-        <input type="text" id='text-input' placeholder="Input text"></input>
-      </label>
-      <input type="button" id="submit-button" value="submit">Submit</button>
+    <form id="input-form">
+      <h2>Input Text Here:</h2>
+      <input type="text" id='text-input' placeholder="Type on, Garth!" class="text-field"></input>
+      <input type="button" id="submit-button" class="button" value="Submit"></input>
     </form>
 
-
-    <div id="available-letters" style="font-size: 24px;">
-      ''
+    <div class="live-container">
+      <div id="avail-letters" style="font-size: 24px;"></div>
     </div>
 
-    <!--
-    <div id="letter-subtractor">
-      <textarea style="height: 200px; width: 200px;" id="new-text" placeholder="Type new text..."></textarea>
+    <div id="subtract-container">
+      <input id="new-text" placeholder="Type new text..." class="text-field"></input>
     </div>
-    -->
 
+
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+    <script src="index.js"></script>
   </body>
 
 </html>
