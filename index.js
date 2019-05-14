@@ -1,28 +1,41 @@
 var liveLetters = [];
+var initialLetters = [];
+var usedLetters = [];
 
-function showAvailable(text) {
-  const fixedText = text.split('')
+function showAvailable(someArr) {
+  const joinArr = someArr.join(' ');
+  $('#avail-letters').html(joinArr);
+}
+
+function updateLiveLetters() {
+  for (let i = 0; i < usedLetters.length; i += 1) {
+    const matchIndex = liveLetters.indexOf(usedLetters[i]);
+    if (matchIndex >= 0) {
+      liveLetters.splice(matchIndex, 1);
+    }
+  }
+  showAvailable(liveLetters);
+}
+
+function makeArray(string) {
+  return string.split('')
     .filter(char => /[\w]/gi.test(char))
     .map(char => char.toLowerCase());
-  liveLetters = fixedText;
-  $('#avail-letters').html(liveLetters.join(' '));
 }
+
 
 $(document).ready(function () {
   $('#submit-button').click(function () {
-    showAvailable($('#text-input').val());
+    initialLetters = makeArray($('#text-input').val());
+    liveLetters = initialLetters;
+    showAvailable(liveLetters);
     $('#input-form')[0].reset();
   });
 });
 
-function updateLiveLetters(text) {
-  return alert(text); // update later
-}
-
 $(document).ready(function () {
   $('#new-text').change(function () {
-    updateLiveLetters($('#new-text').val());
+    usedLetters = makeArray($('#new-text').val());
+    updateLiveLetters();
   });
 });
-
-
