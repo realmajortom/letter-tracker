@@ -7,23 +7,30 @@
   </head>
 
 
-  <body>
-
-    <form id="input-form">
-      <h2>Input Text Here:</h2>
-      <input type="text" id='text-input' placeholder="Type on, Garth!" class="text-field"></input>
-      <input type="button" id="submit-button" class="button" value="Submit"></input>
-    </form>
-
-    <div class="live-container">
-      <div id="avail-letters" style="font-size: 24px;"></div>
+  <body class='flex-center'>
+    <div id="page-heading">
+      <h1 id="title">Letter Matcher</h1>
+      <p id="subtitle">Submit a set of letters in the first field, see them appear in the shaded area, and keep track of
+        which letters are used as you type new words!</p>
     </div>
 
-    <div id="subtract-container">
-      <h2>Type New Text:</h2>
-      <input id="new-text" placeholder="Type new text..." class="text-field"></input>
-    </div>
+    <main class='flex-center'>
+      <form id="input-form" class='flex-center'>
+        <h2>Enter letters to create your dictionary:</h2>
+        <input type="text" id='text-input' placeholder="Type on, Garth!" class="text-field"></input>
+        <input type="button" id="submit-button" class="button" value="Submit"></input>
+      </form>
 
+      <div class="live-container">
+        <div id="avail-letters" style="font-size: 24px;"></div>
+      </div>
+
+      <div id="subtract-container" class='flex-center'>
+        <h2>Type New Text:</h2>
+        <input id="new-text" placeholder="Type new text..." class="text-field"></input>
+      </div>
+      <button id="clear-all">Clear All</button>
+    </main>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
     <script src="index.js"></script>
