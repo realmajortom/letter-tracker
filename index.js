@@ -1,6 +1,7 @@
 var liveLetters = [];
 var initialLetters = [];
 var usedLetters = [];
+var removedLetters = [];
 
 function showAvailable(someArr) {
   const joinArr = someArr.join(' ');
@@ -11,6 +12,7 @@ function updateLiveLetters() {
   for (let i = 0; i < usedLetters.length; i += 1) {
     const matchIndex = liveLetters.indexOf(usedLetters[i]);
     if (matchIndex >= 0) {
+      removedLetters.unshift(liveLetters[matchIndex]);
       liveLetters.splice(matchIndex, 1);
     }
   }
@@ -23,19 +25,26 @@ function makeArray(string) {
     .map(char => char.toLowerCase());
 }
 
-
+// display intial user input
 $(document).ready(function () {
   $('#submit-button').click(function () {
     initialLetters = makeArray($('#text-input').val());
-    liveLetters = initialLetters;
+    liveLetters = initialLetters.filter(char => /[\w]/gi.test(char));
     showAvailable(liveLetters);
     $('#input-form')[0].reset();
   });
 });
 
+// update liveLetters with 2nd input. show liveLetters
 $(document).ready(function () {
-  $('#new-text').change(function () {
-    usedLetters = makeArray($('#new-text').val());
-    updateLiveLetters();
+  $('#new-text').keyup(function (event) {
+    if (event.key == 'Backspace') {
+      liveLetters.push(removedLetters[0]);
+      removedLetters.shift();
+      showAvailable(liveLetters);
+    } else {
+      usedLetters = makeArray($('#new-text').val());
+      updateLiveLetters();
+    }
   });
 });
