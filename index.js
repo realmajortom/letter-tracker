@@ -1,4 +1,4 @@
-var globals = {
+var g = {
   liveLetters: [],
   initialLetters: [],
   usedLetters: [],
@@ -6,15 +6,9 @@ var globals = {
   matchIndexHistory: []
 };
 
-var liveLetters = [];
-var initialLetters = [];
-var usedLetters = [];
-var matchedLetters = [];
-var matchIndexHistory = [];
-
 function makeArray(string) {
   return string.split('')
-    .filter(char => /[\w]/gi.test(char))
+    .filter(char => /[\w]/i.test(char))
     .map(char => char.toLowerCase());
 }
 
@@ -24,21 +18,20 @@ function showAvailable(someArr) {
 }
 
 function updateLiveLetters() {
-  matchIndexHistory.unshift(liveLetters.indexOf(usedLetters[0]));
-  if (matchIndexHistory[0] >= 0) {
-    matchedLetters.unshift(usedLetters[0]);
-    liveLetters.splice(matchIndexHistory[0], 1);
+  g.matchIndexHistory.unshift(g.liveLetters.indexOf(g.usedLetters[0]));
+  if (g.matchIndexHistory[0] >= 0) {
+    g.matchedLetters.unshift(g.usedLetters[0]);
+    g.liveLetters.splice(g.matchIndexHistory[0], 1);
   }
-  showAvailable(liveLetters);
+  showAvailable(g.liveLetters);
 }
-
 
 // display intial user input
 $(document).ready(function () {
   $('#submit-button').click(function () {
-    initialLetters = makeArray($('#text-input').val());
-    liveLetters = initialLetters.filter(char => /[\w]/gi.test(char));
-    showAvailable(liveLetters);
+    g.initialLetters = makeArray($('#text-input').val());
+    g.liveLetters = g.initialLetters.filter(char => /[\w]/i.test(char));
+    showAvailable(g.liveLetters);
     $('#input-form')[0].reset();
   });
 });
@@ -47,26 +40,19 @@ $(document).ready(function () {
 $(document).ready(function () {
   $('#new-text').keyup(function (event) {
     const inputVal = event.key;
-    if (inputVal == 'Backspace' && matchIndexHistory[0] >= 0) {
-      liveLetters.splice(matchIndexHistory[0], 0, matchedLetters[0]);
-      matchIndexHistory.shift();
-      usedLetters.shift();
-      matchedLetters.shift();
-      showAvailable(liveLetters);
-    } else {
-      usedLetters.unshift(inputVal);
+    if (inputVal == 'Backspace' && g.matchIndexHistory[0] >= 0) {
+      g.liveLetters.splice(g.matchIndexHistory[0], 0, g.matchedLetters[0]);
+      g.matchIndexHistory.shift();
+      g.usedLetters.shift();
+      g.matchedLetters.shift();
+      showAvailable(g.liveLetters);
+    } else if (inputVal == 'Backspace') {
+      g.matchIndexHistory.shift();
+      g.usedLetters.shift();
+    }
+    else {
+      g.usedLetters.unshift(inputVal);
       updateLiveLetters();
     }
-  });
-});
-
-$(document).ready(function () {
-  $('#clear-all').click(function () {
-    liveLetters = [];
-    initialLetters = [];
-    usedLetters = [];
-    matchedLetters = [];
-    matchIndexHistory = [];
-    showAvailable(liveLetters);
   });
 });
