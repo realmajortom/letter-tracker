@@ -1,6 +1,7 @@
 body {
   width: 80vw;
   margin: auto;
+  font-family: Raleway;
 }
 .flex-center {
   display: flex;
@@ -47,8 +48,8 @@ h2 {
   border-radius: 6px;
 }
 #avail-letters {
-  font-size: 60px;
-  
+  font-size: 30px;
+  padding: 15px;
 }
 
 #subtract-container {

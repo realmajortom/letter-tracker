@@ -2,16 +2,18 @@
 <html>
 
   <head>
-    <title>Do My Letters Fit?</title>
+    <title>Letter Hatcher</title>
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
     <link href="main.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
   </head>
 
 
   <body class='flex-center'>
     <div id="page-heading">
-      <h1 id="title">Letter Matcher</h1>
-      <p id="subtitle">Submit a set of letters in the first field, see them appear in the shaded area, and keep track of
-        which letters are used as you type new words!</p>
+      <h1 id="title">Letter Hatcher</h1>
+      <p id="subtitle">Track letters a pool of letters as they are used in new phrases!</p>
     </div>
 
     <main class='flex-center'>
@@ -22,7 +24,7 @@
       </form>
 
       <div class="live-container">
-        <div id="avail-letters" style="font-size: 24px;"></div>
+        <div id="avail-letters"></div>
       </div>
 
       <div id="subtract-container" class='flex-center'>
